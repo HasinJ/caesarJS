@@ -10,9 +10,16 @@ const caesar = function(string, shift) {
     if (index==-1) {
       index=alphabetCapped.indexOf(letter)
       if (index==-1) return letter //means it's not a letter (punctuation or space)
-      return alphabetCapped[index+=shift]
-    }else {  return alphabet[index+shift]}
+      index+=shift
+      if (index>26) index-=26
+      return alphabetCapped[index]
+    }else {
+      index+=shift
+      if (index>26) index-=26
+      return alphabet[index]
+    }
   })
+
 
   return string.join('')
 
