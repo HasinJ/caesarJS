@@ -10,20 +10,22 @@ const caesar = function(string, shift) {
     if (index==-1) {
       index=alphabetCapped.indexOf(letter)
       if (index==-1) return letter //means it's not a letter (punctuation or space)
-      index+=shift
-      if (index>26) index-=26
-      return alphabetCapped[index]
-    }else {
-      index+=shift
-      if (index>26) index-=26
-      return alphabet[index]
+      return alphabetCapped[EditIndex(index,shift)]
     }
+    return alphabet[EditIndex(index,shift)]
   })
 
 
   return string.join('')
 
 
+}
+
+function EditIndex(index,shift) {
+  index+=shift
+  while (index>=26) index=index-26
+  while (index<0) index=26+index
+  return index
 }
 
 
